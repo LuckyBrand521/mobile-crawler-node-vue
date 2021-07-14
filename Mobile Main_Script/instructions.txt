@@ -1,0 +1,47 @@
+Install Node v14
+
+Install libraries in scraper, frontend, backend directories: npm install
+
+Change database credentials in .env
+
+
+To run local frontend, go into frontend directory: 
+npm run serve
+To build html, css and js files, go into frontend directory: npm run build
+
+RUN XAMPP
+
+Backend directory:
+Transpile Typescript to Javascript: tsc -p .
+Run backend API: node dist/index.js
+
+
+
+Scraper directory:
+Transpile Typescript to Javascript: tsc -p .
+
+Mobile.de crawler:
+Run main scraper: node dist/mobile.js
+Run scraper for additional information: node dist/mobile_additional.js
+
+Adesa crawler:
+node dist/adesa.js
+
+Autobid crawler:
+node dist/autobid.js
+
+Aldcarmarket crawler:
+node dist/aldcarmarket.js
+
+Bca crawler:
+node dist/bca.js
+
+
+DB_HOST=38ef097.online-server.cloud
+DB_USER=mobile
+DB_PASS=UqZSds&PnN65
+DB_MOBILE=mobilecrawler
+DB_ADESA=adesacrawler
+DB_AUTOBID=autobidcrawler
+DB_ALDCARMARKET=aldcarmarketcrawler
+API_KEY=2aa71ba301f6aa675e0ea90f9c86d689c6008de1

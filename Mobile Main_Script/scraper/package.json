@@ -1,0 +1,34 @@
+{
+  "name": "test_puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run:mobile": "tsc -p . && node dist/mobile.js",
+    "deploy": "tsc -p . ; rsync --exclude 'node_modules' -rv ./* root@38ef097.online-server.cloud:/root/mobilecrawler/scraper/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/mysql": "^2.15.18",
+    "@types/node": "^14.14.37",
+    "@types/puppeteer": "^5.4.3",
+    "@types/tough-cookie": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.23.0",
+    "got": "^11.8.2",
+    "jsdom": "^16.5.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "prom-client": "^13.1.0",
+    "puppeteer": "^7.1.0",
+    "puppeteer-cluster": "^0.22.0",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-anonymize-ua": "^2.2.17",
+    "puppeteer-extra-plugin-stealth": "^2.7.6",
+    "puppeteer-page-proxy": "^1.2.8",
+    "tough-cookie": "^4.0.0",
+    "typescript": "^4.2.3",
+    "xlsx": "^0.16.9"
+  }
+}
