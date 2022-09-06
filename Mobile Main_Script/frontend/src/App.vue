@@ -1,26 +1,14 @@
-<template>
+<template v-if="!$route.path.includes('login')">
   <v-app :dark="dark">
-    <v-app-bar
-      app
-      color="#082344"
-      dark
-      dense
-    >
+    <v-app-bar app color="#082344" dark dense>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-btn
-        href="#"
-        text
-      >
+      <v-btn href="#" text>
         <span class="mr-2">Mobile crawler</span>
       </v-btn>
 
       <v-spacer></v-spacer>
 
-      <v-switch
-      v-model="dark"
-      :label="`Dark mode`"
-      hide-details
-    ></v-switch>
+      <v-switch v-model="dark" :label="`Dark mode`" hide-details></v-switch>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -30,14 +18,9 @@
       color="#082344"
       dark
     >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
-        >
-        <!--  <v-list-item>
+      <v-list nav dense>
+        <v-list-item-group v-model="group">
+          <!--  <v-list-item>
             <v-list-item-icon>
               <v-icon>{{ homeIcon }}</v-icon>
             </v-list-item-icon>
@@ -64,36 +47,39 @@
           </v-list-item>
           <v-list-item>
             <v-list-item-title>KLEINANZEIGEN</v-list-item-title>
-          </v-list-item>  
-
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 
     <v-main>
-
-      <Adesa v-if="group === 0"/>
-      <Autobid v-if="group === 1"/>
-      <Aldcarmarket v-if="group === 2"/>
-      <Bca v-if="group === 3"/>
-      <Ebay v-if="group === 4"/>
-      <Klein v-if="group === 5"/>
+      <Adesa v-if="group === 0" />
+      <Autobid v-if="group === 1" />
+      <Aldcarmarket v-if="group === 2" />
+      <Bca v-if="group === 3" />
+      <Ebay v-if="group === 4" />
+      <Klein v-if="group === 5" />
     </v-main>
+    <v-content>
+      <keep-alive :include="['Login']">
+        <router-view></router-view>
+      </keep-alive>
+    </v-content>
   </v-app>
 </template>
 
 <script>
 //import Mobile from './components/mobile/Cars.vue';
-import Adesa from './components/adesa/Auctions.vue';
-import Autobid from './components/autobid/Auctions.vue';
-import Aldcarmarket from './components/aldcarmarket/Auctions.vue';
-import Bca from './components/bca/Auctions.vue';
-import Ebay from './components/ebay/Auctions.vue';
-import Klein from './components/klein/Auctions.vue';
-import { mdiHome } from '@mdi/js';
+import Adesa from "./components/adesa/Auctions.vue";
+import Autobid from "./components/autobid/Auctions.vue";
+import Aldcarmarket from "./components/aldcarmarket/Auctions.vue";
+import Bca from "./components/bca/Auctions.vue";
+import Ebay from "./components/ebay/Auctions.vue";
+import Klein from "./components/klein/Auctions.vue";
+import { mdiHome } from "@mdi/js";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Adesa,
@@ -101,7 +87,7 @@ export default {
     Aldcarmarket,
     Bca,
     Ebay,
-    Klein,
+    Klein
   },
 
   data: () => ({
@@ -120,53 +106,54 @@ export default {
     }
   },
 
-  mounted () {
+  mounted() {
     if (localStorage.getItem("dark") !== null) {
       this.dark = localStorage.getItem("dark") === "true" ? true : false;
-    }
-    else {
+    } else {
       this.dark = false;
       localStorage.setItem("dark", "false");
     }
-  },
+  }
 };
 </script>
 <style>
-.hidden{
-  display:none;
+.hidden {
+  display: none;
 }
-.vw-94{
+.vw-94 {
   width: 95vw;
-  overflow: auto!important;
+  overflow: auto !important;
 }
-.vw-94 .v-data-table__wrapper{
+.vw-94 .v-data-table__wrapper {
   height: 80vh;
   overflow-y: auto;
 }
-.v-data-table > .v-data-table__wrapper > table > tbody > tr > td, .v-data-table > .v-data-table__wrapper > table > thead > tr > td, .v-data-table > .v-data-table__wrapper > table > tfoot > tr > td{
+.v-data-table > .v-data-table__wrapper > table > tbody > tr > td,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > td,
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > td {
   heigth: 60px;
 }
-.form-inline{
+.form-inline {
   display: -webkit-inline-box;
 }
-.form-inline .v-input{
+.form-inline .v-input {
   margin-left: 1rem;
 }
-th.text-start{
-  padding-right: 0!important;
-  min-width: 82px!important;
+th.text-start {
+  padding-right: 0 !important;
+  min-width: 82px !important;
 }
-.red-background{
+.red-background {
   background: #f3bebe63;
 }
-.green-background{
+.green-background {
   background: #dbf7c9;
 }
-.margin-left-1{
+.margin-left-1 {
   margin-left: 1rem;
 }
-.min-width-105{
-  min-width: 105px!important;
+.min-width-105 {
+  min-width: 105px !important;
 }
 .slidein {
   overflow-y: scroll;
@@ -183,12 +170,13 @@ th.text-start{
 }
 
 /* before the element is shown, start off the screen to the right */
-.slide-enter, .slide-leave-active {
+.slide-enter,
+.slide-leave-active {
   right: -100%;
 }
 
 .close-btn {
-  border:none;
+  border: none;
   font-weight: bold;
   font-size: 2em;
   background: transparent;
@@ -197,7 +185,7 @@ th.text-start{
   left: 0;
   padding: 0.5em;
 }
-.filter-btn{
+.filter-btn {
   border: 1px solid;
   border-radius: 20px;
   padding: 1px 1rem;
